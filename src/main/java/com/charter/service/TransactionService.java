@@ -1,9 +1,14 @@
 package com.charter.service;
 
 import com.charter.entity.Transaction;
-import com.charter.entity.dto.TransactionDTO;
+import com.charter.entity.dto.TransactionDto;
 
 public interface TransactionService {
 
-    TransactionDTO addTransaction(Transaction transaction);
+    /**
+     * Create new transaction
+     * @param transactionDto
+     * @return
+     */
+    TransactionDto createTransaction(TransactionDto transactionDto);
 }

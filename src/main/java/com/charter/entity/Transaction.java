@@ -1,16 +1,15 @@
 package com.charter.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Transaction {
@@ -25,5 +24,7 @@ public class Transaction {
     private Long customerId;
 
     @Column(name = "create_time")
-    private Date createTime;
+    private LocalDate createTime;
+
+
 }

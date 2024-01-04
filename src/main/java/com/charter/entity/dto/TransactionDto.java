@@ -1,13 +1,15 @@
 package com.charter.entity.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
 @Getter
 @Setter
-public class TransactionDTO {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class TransactionDto {
 
     private Long id;
 

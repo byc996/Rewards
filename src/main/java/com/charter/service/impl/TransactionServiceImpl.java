@@ -1,7 +1,7 @@
 package com.charter.service.impl;
 
 import com.charter.entity.Transaction;
-import com.charter.entity.dto.TransactionDTO;
+import com.charter.entity.dto.TransactionDto;
 import com.charter.repository.TransactionRepository;
 import com.charter.service.TransactionService;
 import org.springframework.beans.BeanUtils;
@@ -17,10 +17,12 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public TransactionDTO addTransaction(Transaction transaction) {
+    public TransactionDto createTransaction(TransactionDto transactionDto) {
+        Transaction transaction = new Transaction();
+        BeanUtils.copyProperties(transactionDto, transaction);
         Transaction savedTransaction = transactionRepository.save(transaction);
-        TransactionDTO transactionDTO = new TransactionDTO();
-        BeanUtils.copyProperties(savedTransaction, transactionDTO);
-        return transactionDTO;
+        TransactionDto savedTransactionDTO = new TransactionDto();
+        BeanUtils.copyProperties(savedTransaction, savedTransactionDTO);
+        return savedTransactionDTO;
     }
 }

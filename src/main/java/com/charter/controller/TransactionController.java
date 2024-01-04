@@ -1,8 +1,9 @@
 package com.charter.controller;
 
 import com.charter.entity.Transaction;
-import com.charter.entity.dto.TransactionDTO;
+import com.charter.entity.dto.TransactionDto;
 import com.charter.service.TransactionService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,10 +20,15 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @PostMapping
-    public ResponseEntity<TransactionDTO> addTransaction(@RequestBody Transaction transaction) {
-        TransactionDTO transactionDTO = transactionService.addTransaction(transaction);
-        return ResponseEntity.ok(transactionDTO);
+    /**
+     * Create new transaction
+     * @param transactionDto
+     * @return
+     */
+    @PostMapping("/create")
+    public ResponseEntity<TransactionDto> createTransaction(@RequestBody TransactionDto transactionDto) {
+        TransactionDto transactionDTO = transactionService.createTransaction(transactionDto);
+        return new ResponseEntity<>(transactionDTO, HttpStatus.CREATED);
     }
 
 }
