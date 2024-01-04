@@ -2,6 +2,7 @@ package com.charter.entity.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -17,5 +18,5 @@ public class TransactionDto {
 
     private Long customerId;
 
-    private Date createTime;
+    private LocalDate createTime;
 }

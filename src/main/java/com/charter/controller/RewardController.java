@@ -20,23 +20,25 @@ public class RewardController {
     }
 
     /**
-     * Get monthly reward during three month points by customer id
+     * Get monthly reward points for the past three-month by customer id
      * @param customerId
      * @return
      */
     @GetMapping("/monthly/{customerId}")
     public ResponseEntity<Map<Integer, Integer>> getMonthlyRewardByCustomerId(@PathVariable Long customerId) {
+        if(customerId <= 0) throw new IllegalArgumentException("customer id must greater than 0");
         Map<Integer, Integer> monthlyReward = customerRewardService.getMonthlyRewardByCustomerId(customerId);
         return ResponseEntity.ok(monthlyReward);
     }
 
     /**
-     * Get total reward points during three month by customer id
+     * Get total reward points for the past three-month by customer id
      * @param customerId
      * @return
      */
     @GetMapping("/total/{customerId}")
     public ResponseEntity<Integer> getTotalRewardByCustomerId(@PathVariable Long customerId) {
+        if(customerId <= 0) throw new IllegalArgumentException("customer id must greater than 0");
         int totalReward = customerRewardService.getTotalRewardByCustomerId(customerId);
         return ResponseEntity.ok(totalReward);
     }
