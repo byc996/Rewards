@@ -1,21 +1,25 @@
-# Getting Started
+# Retailer Rewards
+A retailer offers a rewards program to its customers, awarding points based on each recorded purchase. 
+ 
+A customer receives 2 points for every dollar spent over $100 in each transaction, plus 1 point for every dollar spent over $50 in each transaction 
+(e.g. a $120 purchase = 2x$20 + 1x$50 = 90 points).
+ 
+Given a record of every transaction during a three-month period, calculate the reward points earned for each customer per month and total.
 
-### Reference Documentation
+# Technologies 
+- Java 8, Spring Boot 2.7.6
+- Spring MVC,Spring Data JPA
+- Junit, Mockito
+- Embedded H2 DB
 
-For further reference, please consider the following sections:
+# APIs
+TransactionController
+- /transaction/create : Create new transaction
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.1.7/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.1.7/maven-plugin/reference/html/#build-image)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/3.1.7/reference/htmlsingle/index.html#data.sql.jpa-and-spring-data)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/3.1.7/reference/htmlsingle/index.html#web)
+RewardController
+- /reward/monthly/{customerId} : Get monthly reward points for the past three-month by customer id
+- /reward/total/{customerId} : Get total reward points for the past three-month by customer id
 
-### Guides
-
-The following guides illustrate how to use some features concretely:
-
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
+# Unit Test
+Test all methods in repository, service and controller layers.
 
