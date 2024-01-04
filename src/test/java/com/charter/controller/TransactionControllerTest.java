@@ -41,17 +41,16 @@ class TransactionControllerTest {
     void testCreateTransaction() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         TransactionDto transactionDto = TransactionDto.builder().amount(78).customerId(1L).build();
-//        given(transactionService.createTransaction(ArgumentMatchers.any()))
-//                .willAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
+        // mock data fetched from service layer
         when(transactionService.createTransaction(Mockito.any(TransactionDto.class))).thenReturn(transactionDto);
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/transaction/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(transactionDto)));
-
+        // check response status and body
         resultActions.andExpect(MockMvcResultMatchers.status().isCreated())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.amount",
-                        CoreMatchers.is(transactionDto.getAmount())))
-                .andDo(MockMvcResultHandlers.print());
+                        CoreMatchers.is(transactionDto.getAmount())));
+//                .andDo(MockMvcResultHandlers.print());
 
     }
 }

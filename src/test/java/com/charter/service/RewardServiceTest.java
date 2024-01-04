@@ -35,8 +35,11 @@ class RewardServiceTest {
     private static List<Transaction> transactions = new ArrayList<>();
 
 
+    /**
+     * Prepare mock data
+     */
     @BeforeAll
-    public static void init() throws ParseException {
+    public static void init() {
         Transaction transaction1 = Transaction.builder()
                 .amount(55).customerId(1L).createTime(LocalDate.of(2023, 11, 1)).build();
         transactions.add(transaction1);

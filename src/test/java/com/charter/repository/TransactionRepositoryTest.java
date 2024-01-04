@@ -27,7 +27,8 @@ class TransactionRepositoryTest {
 
 
     @BeforeEach
-    void setUp() throws ParseException {
+    void setUp() {
+        // mock data
         Transaction transaction1 = Transaction.builder()
                 .id(1L).amount(55).customerId(1L).createTime(LocalDate.of(2023, 11, 6))
                 .build();

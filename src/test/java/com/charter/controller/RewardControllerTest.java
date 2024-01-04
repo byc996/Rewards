@@ -45,14 +45,16 @@ class RewardControllerTest {
         Map<Integer, Integer> monthlyReward = new HashMap<>();
         monthlyReward.put(11, 123);
         monthlyReward.put(12, 45);
+        // mock data fetched from service layer
         when(rewardService.getMonthlyRewardByCustomerId(Mockito.any(Long.class))).thenReturn(monthlyReward);
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/reward/monthly/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(monthlyReward)));
-
+        // check response status
         MvcResult mvcResult = resultActions.andExpect(MockMvcResultMatchers.status().isOk())
 //                .andDo(MockMvcResultHandlers.print())
                 .andReturn();
+        // check response status
         String contentAsString = mvcResult.getResponse().getContentAsString();
         Map<Integer, Integer> resultMap = objectMapper.readValue(contentAsString, Map.class);
         assertEquals(monthlyReward.get(11), resultMap.get("11"));
@@ -62,14 +64,16 @@ class RewardControllerTest {
     @Test
     void testGetTotalRewardByCustomerId() throws Exception {
         int reward = 12;
+        // mock data fetched from service layer
         when(rewardService.getTotalRewardByCustomerId(Mockito.any(Long.class))).thenReturn(reward);
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/reward/total/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(String.valueOf(reward)));
-
+        // check response status
         MvcResult mvcResult = resultActions.andExpect(MockMvcResultMatchers.status().isOk())
 //                .andDo(MockMvcResultHandlers.print())
                 .andReturn();
+        // check response body
         assertEquals(mvcResult.getResponse().getContentAsString(), String.valueOf(reward));
     }
 }
